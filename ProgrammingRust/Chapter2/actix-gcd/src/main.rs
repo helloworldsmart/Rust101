@@ -1,9 +1,11 @@
 use actix_web::{web, App, HttpResponse, HttpServer};
 
-fn main() {
+#[actix_web::main]
+async fn main() {
     let server = HttpServer::new(|| {
         App::new()
             .route("/", web::get().to(get_index))
+            .route("/gcd", web::post().to(post_gcd))
     });
 
     println!("Serving on http://localhost:3000...");
@@ -12,7 +14,7 @@ fn main() {
         .run().expect("error running server");
 }
 
-fn get_index() -> HttpResponse {
+async fn get_index() -> HttpResponse {
     HttpResponse::Ok()
         .content_type("text/html")
         .body(
@@ -27,14 +29,15 @@ fn get_index() -> HttpResponse {
         )
 }
 
+use serde::Deserialize;
 #[derive(Deserialize)]
 struct GcdParameters {
     n: u64,
     m: u64,
 }
 
-fn post_gcd(from: web::Form<GcdParameters>) -> HttpResponse {
-    if form.n == 0 || form.m {
+async fn post_gcd(form: web::Form<GcdParameters>) -> HttpResponse {
+    if form.n == 0 || form.m == 0 {
         return HttpResponse::BadRequest()
             .content_type("text/html")
             .body("Computing the GCD with zero is boring.");
@@ -48,3 +51,19 @@ fn post_gcd(from: web::Form<GcdParameters>) -> HttpResponse {
         .content_type("text/html")
         .body(response)
 }
+
+fn gcd(mut n: u64, mut m: u64) -> u64 {
+    assert!(n != 0 && m != 0);
+    while m != 0 {
+        if m < n {
+            let t = m;
+            m = n;
+            n = t;
+        }
+        m = m % n;
+    }
+    n
+}
+
+// TODO: example is error
+// https://github.com/ProgrammingRust/examples/blob/master/actix-gcd/src/main.rs
