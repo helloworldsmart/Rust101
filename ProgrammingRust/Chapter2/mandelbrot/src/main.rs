@@ -1,24 +1,27 @@
-fn square_loop(mut x: f64) {
-    loop {
-        x = x * x;
-    }
-}
+// MARK: never used
+// fn square_loop(mut x: f64) {
+//     loop {
+//         x = x * x;
+//     }
+// }
 
-fn square_add_loop(c: f64) {
-    let mut x = 0.;
-    loop {
-        x = x * x + c;
-    }
-}
+// MARK: never used
+// fn square_add_loop(c: f64) {
+//     let mut x = 0.;
+//     loop {
+//         x = x * x + c;
+//     }
+// }
 
 use num::Complex;
 
-fn complex_square_add_loop(c: Complex<f64>) {
-    let mut z = Complex { re: 0.0, im: 0.0 };
-    loop { 
-        z = z * z + c;
-    }
-}
+// MARK: never used
+// fn complex_square_add_loop(c: Complex<f64>) {
+//     let mut z = Complex { re: 0.0, im: 0.0 };
+//     loop { 
+//         z = z * z + c;
+//     }
+// }
 
 // struct Complex<T> {
 //     /// 復數的實數部分
@@ -156,8 +159,8 @@ fn main() {
     }
 
     let bounds = parse_pair(&args[2], 'x').expect("error parsing image dimensions");
-    let upper_left = parse_pair(&args[3]).expect("error parsing upper left corner point");
-    let lower_right = parse_pair(&args[4]).expect("error parsing lower right corner point");
+    let upper_left = parse_complex(&args[3]).expect("error parsing upper left corner point");
+    let lower_right = parse_complex(&args[4]).expect("error parsing lower right corner point");
 
     let mut pixels = vec![0; bounds.0 * bounds.1];
 
