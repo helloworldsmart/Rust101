@@ -13,6 +13,7 @@ fn print_usage() {
 }
 
 use std::env;
+use std::fs;
 
 fn parse_args() -> Arguments {
     let args: Vec<String> = env::args().skip(1).collect();
@@ -35,4 +36,25 @@ fn parse_args() -> Arguments {
 fn main() {
     let args = parse_args();
     println!("{:?}", args);
+
+    let data = match fs::read_to_string(&args.filename) {
+        Ok(v) => v,
+        Err(e) => {
+            eprintln!("{} failed to read from file '{}': {:?}",
+                "Error:".red().bold(), args.filename, e);
+            std::process::exit(1);
+        }
+    };
+
+    match fs::write(&args.output, &data) {
+        Ok(_) => {},
+        Err(e) => {
+            eprintln!("{} failed to write to file '{}': {:?}",
+                "Error:".red().bold(), args.filename, e);
+            std::process::exit(1);
+        }
+    };
 }
+
+// cargo run "find" "replace" file output
+// cargo run "find" "replace" Cargo.toml Copy.toml
