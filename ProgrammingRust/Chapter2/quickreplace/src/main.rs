@@ -1,4 +1,4 @@
-#[deriver(Debug)]
+#[derive(Debug)]
 struct Arguments {
     target: String,
     replacement: String,
@@ -15,7 +15,7 @@ fn print_usage() {
 use std::env;
 
 fn parse_args() -> Arguments {
-    let args: Vec<String> = env::args().ship(1).collect();
+    let args: Vec<String> = env::args().skip(1).collect();
 
     if args.len() != 4 {
         print_usage();
