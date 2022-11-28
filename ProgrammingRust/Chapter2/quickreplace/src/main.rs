@@ -14,6 +14,12 @@ fn print_usage() {
 
 use std::env;
 use std::fs;
+use regex::Regex;
+
+fn replace(target: &str, replacement: &str, text: &str) -> Result<String, regex::Error> {
+    let regex = Regex::new(target)?;
+    Ok(regex.replace_all(text, replacement).to_string())
+}
 
 fn parse_args() -> Arguments {
     let args: Vec<String> = env::args().skip(1).collect();
@@ -46,6 +52,15 @@ fn main() {
         }
     };
 
+    let replaced_data = match replace(&args.target, &args.replacement, &data) {
+        Ok(v) => v,
+        Err(e) => {
+            eprintln!("{} failed to replace text: {:?}",
+                "Error: ".red().bold(), e);
+            std::process::exit(1);
+        }
+    };
+
     match fs::write(&args.output, &data) {
         Ok(_) => {},
         Err(e) => {
@@ -58,3 +73,6 @@ fn main() {
 
 // cargo run "find" "replace" file output
 // cargo run "find" "replace" Cargo.toml Copy.toml
+// echo "Hello, world" > test.txt
+// cargo run "[[a-z]" "0" test.txt test-modified.txt
+// cargo run "[a-z]" "0" test.txt test-modified.txt
