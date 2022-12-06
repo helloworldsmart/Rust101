@@ -18,7 +18,10 @@ fn main() {
             .read_line(&mut guess)
             .expect("讀取該行失敗");
     
-        let guess: u32 = guess.trim().parse().expect("請輸入一個數字！");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
     
         println!("你的猜測數字 : {}", guess);
     
