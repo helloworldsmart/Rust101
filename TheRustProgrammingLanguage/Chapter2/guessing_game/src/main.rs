@@ -17,11 +17,13 @@ fn main() {
         .read_line(&mut guess)
         .expect("讀取該行失敗");
 
+    let guess: u32 = guess.trim().parse().expect("請輸入一個數字！");
+
     println!("你的猜測數字 : {}", guess);
 
     match guess.cmp(&secret_number) {
         Ordering::Less => println!("太小了！"),
-        Ordering::Greater => println!("太大了！")
-        Ordering::Equal => println!("獲勝！")
+        Ordering::Greater => println!("太大了！"),
+        Ordering::Equal => println!("獲勝！"),
     }
 }
