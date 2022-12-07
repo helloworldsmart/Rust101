@@ -28,4 +28,10 @@ fn main() {
     let z = 'ℤ';
 
     let heart_eyed_cat = '😻';
+
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+    let (x, y, z) = tup;
+
+    println!("y 的數值為：{}", y);
 }
