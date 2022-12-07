@@ -18,4 +18,14 @@ fn main() {
     let floored = 2 / 3;
 
     let remainder = 43 % 5;
+
+    let t = true;
+
+    let f: bool = false;
+
+    let c = 'z';
+
+    let z = 'ℤ';
+
+    let heart_eyed_cat = '😻';
 }
