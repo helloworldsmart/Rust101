@@ -13,6 +13,10 @@ fn main() {
     };
 
     println!("y 的數值為：{}", y);
+
+    let a = five();
+
+    println!("a 的數值為：{}", a);
 }
 
 fn another_function(x: i32) {
@@ -21,4 +25,8 @@ fn another_function(x: i32) {
 
 fn print_labeld_measurement(value: i32, unit_label: char) {
     println!("測量值爲：{}{}", value, unit_label);
+}
+
+fn five() -> i32 {
+    5
 }
