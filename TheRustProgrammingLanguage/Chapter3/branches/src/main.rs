@@ -95,4 +95,13 @@ fn main() {
 
         index += 1;
     }
+
+    for element in a {
+        println!("數值為：{}", element);
+    }
+
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
+    println!("升空！！！")
 }
