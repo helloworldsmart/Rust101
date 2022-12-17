@@ -32,4 +32,12 @@ fn main() {
     } else {
         println!("數字無法被 4、3、2 整除");
     }
+
+    let condition = true;
+
+    let number = if condition { 5 } else { 6 };
+    // error[E0308]: `if` and `else` have incompatible types
+    // let number = if condition { 5 } else { "六" };
+
+    println!("數字結果為：{}", number);
 }
