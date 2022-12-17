@@ -3,7 +3,16 @@ fn main() {
 
     another_function(5);
 
-    print_labeld_measurement(5, 'h')
+    print_labeld_measurement(5, 'h');
+
+    let x = 5;
+
+    let y = {
+        let x = 3;
+        x + 1
+    };
+
+    println!("y 的數值為：{}", y);
 }
 
 fn another_function(x: i32) {
