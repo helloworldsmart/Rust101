@@ -76,4 +76,14 @@ fn main() {
     };
 
     println!("結果為：{}", result);
+
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{}!", number);
+
+        number -= 1;
+    }
+
+    println!("升空！！！");
 }
