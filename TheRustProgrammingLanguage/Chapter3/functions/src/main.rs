@@ -17,6 +17,10 @@ fn main() {
     let a = five();
 
     println!("a 的數值為：{}", a);
+
+    let b = plus_one(5);
+
+    println!("b 的數值為：{}", b);
 }
 
 fn another_function(x: i32) {
@@ -29,4 +33,10 @@ fn print_labeld_measurement(value: i32, unit_label: char) {
 
 fn five() -> i32 {
     5
+}
+
+// if add ;
+// error: could not compile `functions` due to previous error
+fn plus_one(x: i32) -> i32 {
+    x + 1
 }
