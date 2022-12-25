@@ -30,6 +30,10 @@ mod front_of_house {
 fn serve_order() {}
 
 mod back_of_house {
+    pub enum Appetizer {
+        Soup,
+        Salad,
+    }
     pub struct Breakfast {
         pub toast: String,
         seasonal_fruit: String,
@@ -62,6 +66,9 @@ pub fn eat_at_restaurant() {
     // 接下來這行取消註解的話，我們就無法編譯通過
     // 我們無法擅自更改餐點搭配的季節水果
     // meal.seasonal_fruit = String::from("藍莓");
+
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
 }
 
 #[cfg(test)]
