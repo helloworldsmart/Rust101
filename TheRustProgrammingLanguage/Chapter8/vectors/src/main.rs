@@ -34,3 +34,10 @@ fn example4() {
     // let does_not_exit = &v[100];
     // let does_not_exit = v.get(100)
 }
+
+fn example5() {
+    let mut v = vec![100, 32, 57];
+    for i in &mut v {
+        *i += 50;
+    }
+}
